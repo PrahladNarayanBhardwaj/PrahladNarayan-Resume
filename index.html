@@ -1,194 +1,354 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prahlad Narayan Bhardwaj - Resume</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prahlad Narayan Bhardwaj</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<!-- Header -->
-<header class="hero">
-    <h1>Prahlad Narayan Bhardwaj (Rayan)</h1>
-    <p>Master of Science in Business Analytics | Data Analyst | Process Improvement Specialist</p>
-    <p><strong>Turning Data into Actionable Business Insights | Driving Growth with Advanced Analytics</strong></p> <!-- Tagline added -->
-    <p>Email: <a href="mailto:prahlad.narayan77@gmail.com">prahlad.narayan77@gmail.com</a> | Phone: (848) 262-3770</p>
-    <p>LinkedIn: <a href="https://www.linkedin.com/in/prahladn/" target="_blank">www.linkedin.com/in/prahladn</a></p>
-</header>
-
-<!-- Navigation Bar -->
-<nav>
-    <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#about">About Me</a></li>
-        <li><a href="#experience">Professional Experience</a></li>
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a class="nav-logo" href="#hero">PRB</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
         <li><a href="#education">Education</a></li>
-        <li><a href="#activities">Professional Activities</a></li>
-        <li><a href="#additional-info">Credentials & Learning</a></li>
         <li><a href="#contact">Contact</a></li>
-    </ul>
-</nav>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-menu" id="mobile-menu">
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-<!-- Home Section -->
-<section id="home" class="section">
-    <div class="home-container">
-        <img src="images/Headshot.jpg" alt="Prahlad Narayan Bhardwaj" class="Headshot">
-        <div class="home-text">
-            <h1>Welcome!</h1>
-            <p>I'm a data analyst specializing in business analytics and process improvement. Explore my work, projects, and credentials here!</p>
-            <p><strong>Passionate about transforming complex data into actionable insights and driving strategic decisions that improve business performance.</strong></p> <!-- Career objective added -->
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-greeting">Hi, I'm Prahlad 👋</p>
+        <h1 class="hero-headline">
+          Turning <span class="accent">data</span><br />
+          into decisions.
+        </h1>
+        <p class="hero-sub">
+          MS Business Analytics · Simon Business School, University of Rochester<br />
+          Specializing in predictive modeling, NLP, and business intelligence.
+        </p>
+        <div class="hero-ctas">
+          <a href="#projects" class="btn-primary">View Projects</a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
         </div>
+        <div class="hero-social">
+          <a href="https://www.linkedin.com/in/prahladn/" target="_blank" aria-label="LinkedIn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </a>
+          <a href="https://github.com/PrahladNarayanBhardwaj" target="_blank" aria-label="GitHub">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          </a>
+          <a href="mailto:prahlad.narayan77@gmail.com" aria-label="Email">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-photo">
+        <img src="images/headshot.jpg" alt="Prahlad Narayan Bhardwaj" />
+      </div>
     </div>
-</section>
-
-
-<!-- About Me Section -->
-<section id="about" class="section">
-    <div class="about-container">
-        <h2>About Me</h2>
-        <p>Hello! I'm <strong>Prahlad Narayan Bhardwaj</strong>, a Master of Science student in Business Analytics at Simon Business School, University of Rochester. With a strong foundation in data analysis, process improvement, and business strategy, I am passionate about turning complex data into actionable insights to solve challenging business problems.</p>
-        <p><strong>Through my work, I’ve enhanced operational efficiency by 25% and supported a 30% revenue increase through data-driven decisions.</strong></p> <!-- Quantified results -->
-        <h3>Technical Skills</h3>
-        <ul>
-            <li><strong>Languages/Packages:</strong> Python (Pandas, NumPy, Scipy, PySpark), R, SQL, Visualization (Matplotlib, Tableau, Power BI)</li>
-            <li><strong>Techniques:</strong> Regression, Clustering, PCA, Forecasting (Exponential Smoothing, Moving Averages), Newsvendor Model, Utilization Analysis, Seasonality Analysis</li>
-        </ul>
+    <div class="scroll-hint">
+      <span>scroll</span>
+      <div class="scroll-line"></div>
     </div>
-</section>
+  </section>
 
-
-<!-- Professional Experience Section -->
-<section id="experience" class="section">
-    <h2>Professional Experience</h2>
-    <div class="experience">
-        <h3>InterGlobe Aviation Ltd. (Indigo Airlines)</h3>
-        <p><em>Airport Operations & Customer Service | Bangalore, India | July 2022 - May 2024</em></p>
-        <ul>
-            <li>Spearheaded operational analysis, leveraging forecasting models to improve service quality by 25%.</li> <!-- Action verb added -->
-            <li>Streamlined workflows by collaborating cross-functionally, reducing delay-related costs by 2%.</li>
-            <li>Designed interactive SQL dashboards, empowering senior leaders to take data-driven actions.</li> <!-- Focus on "why" and action -->
-        </ul>
-
-        <h3>KREATIO Software Pvt Ltd</h3>
-        <p><em>Business Development | Bangalore, India | April 2021 - July 2022</em></p>
-        <ul>
-            <li>Enhanced reporting processes, simplifying data dashboards and improving decision-making across teams.</li>
-            <li>Led resource allocation strategies, driving a 30% revenue increase through data-driven decisions.</li>
-        </ul>
-        </ul>
-        
-        <p><em>Business Development Intern | Bangalore, India | November 2020 - April 2021</em></p>
-        
-            <li>Boosted lead conversion rates by 30% by optimizing lead tracking and pipeline analysis.</li>
-            <li>Conducted competitive analysis, simplifying complex data to support executive decision-making.</li>
-        </ul>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container">
+      <p class="section-label">About</p>
+      <div class="about-grid">
+        <div class="about-text">
+          <h2>Building the bridge between <span class="accent">analytics</span> and business impact.</h2>
+          <p>I'm a data analyst with hands-on experience in predictive modeling, NLP, and business intelligence. Before pursuing my MS at the University of Rochester, I spent 3 years in industry — at IndiGo Airlines optimizing airport operations and at KREATIO Software driving business development through data.</p>
+          <p>I believe the best analytics work isn't just technically sound — it tells a story that makes decision-makers act.</p>
+        </div>
+        <div class="about-skills">
+          <p class="skills-label">Tech Stack</p>
+          <div class="skills-grid">
+            <span class="tag">Python</span>
+            <span class="tag">R</span>
+            <span class="tag">SQL</span>
+            <span class="tag">Tableau</span>
+            <span class="tag">Power BI</span>
+            <span class="tag">scikit-learn</span>
+            <span class="tag">pandas</span>
+            <span class="tag">NLTK</span>
+            <span class="tag">Scrapy</span>
+            <span class="tag">NetworkX</span>
+            <span class="tag">MySQL</span>
+            <span class="tag">PySpark</span>
+            <span class="tag">Matplotlib</span>
+            <span class="tag">Seaborn</span>
+          </div>
+          <p class="skills-label" style="margin-top:24px;">Methods</p>
+          <div class="skills-grid">
+            <span class="tag tag-outline">Regression</span>
+            <span class="tag tag-outline">Clustering</span>
+            <span class="tag tag-outline">NLP / TF-IDF</span>
+            <span class="tag tag-outline">K-Fold CV</span>
+            <span class="tag tag-outline">Text Classification</span>
+            <span class="tag tag-outline">Forecasting</span>
+            <span class="tag tag-outline">Network Analysis</span>
+            <span class="tag tag-outline">PCA</span>
+          </div>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <p class="section-label">Projects</p>
+      <h2 class="section-title">Selected Work</h2>
+      <div class="projects-grid">
 
-<!-- Projects Section -->
-<section id="projects" class="section">
-    <h2>Projects</h2>
-    <div class="project-card">
-        <h3>Employee Data Analysis</h3>
-        <p><strong>Technologies Used:</strong> PCA, K-Means Clustering, Python (Pandas, Scikit-learn)</p>
-        <p>Analyzed 5000+ employee records for Nexus Logistics Solutions to segment motivations and optimize training programs. This resulted in a 15% increase in employee engagement and training efficiency.</p> <!-- Key takeaway added -->
+        <a class="project-card" href="https://github.com/PrahladNarayanBhardwaj/customer-revenue-analytics-mysql-tableau" target="_blank">
+          <div class="project-top">
+            <div class="project-tags">
+              <span>MySQL</span><span>Tableau</span><span>SQL</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <h3>Customer & Revenue Analytics</h3>
+          <p>End-to-end analytics on the Sakila DVD rental database — customer segmentation, genre revenue analysis, and demand forecasting via Tableau dashboards.</p>
+          <div class="project-highlight">
+            <span>~15% of customers drive majority of revenue</span>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://github.com/PrahladNarayanBhardwaj/predictive-analytics-r-business-cases" target="_blank">
+          <div class="project-top">
+            <div class="project-tags">
+              <span>Python</span><span>scikit-learn</span><span>K-Fold CV</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <h3>Predictive Analytics — Business Cases</h3>
+          <p>Credit card approval modeling across 19,785 records using Linear Regression, Ridge, and Polynomial models. Facebook ad ROI analysis and pharmaceutical detailing causal inference.</p>
+          <div class="project-highlight">
+            <span>Best RMSE: 0.341 (Poly degree-2, no leakage)</span>
+          </div>
+        </a>
+
+        <a class="project-card" href="https://github.com/PrahladNarayanBhardwaj/social-media-text-analytics" target="_blank">
+          <div class="project-top">
+            <div class="project-tags">
+              <span>Python</span><span>NLP</span><span>Scrapy</span><span>NetworkX</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <h3>Social Media Text Analytics</h3>
+          <p>Full NLP pipeline: web scraping → TF-IDF preprocessing → multi-model text classification (Naive Bayes, SVM, SGD, Random Forest). Social network graph analysis with NetworkX.</p>
+          <div class="project-highlight">
+            <span>Naive Bayes: 88.9% accuracy on pet reviews</span>
+          </div>
+        </a>
+
+        <a class="project-card project-card--light" href="#projects">
+          <div class="project-top">
+            <div class="project-tags">
+              <span>Python</span><span>PCA</span><span>K-Means</span>
+            </div>
+            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+          </div>
+          <h3>Employee Segmentation Analysis</h3>
+          <p>Analyzed 5,000+ employee records for Nexus Logistics using PCA and K-Means clustering to segment motivations and optimize training programs.</p>
+          <div class="project-highlight">
+            <span>15% increase in training efficiency</span>
+          </div>
+        </a>
+
+      </div>
     </div>
-    <div class="project-card">
-        <h3>Product Development & Strategy Realignment</h3>
-        <p><strong>Technologies Used:</strong> Market Gap Analysis, Data Visualization, Python (Pandas)</p>
-        <p>Identified market gaps to support product team decision-making, driving a 20% boost in market share.</p> <!-- Key takeaway added -->
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="container">
+      <p class="section-label">Experience</p>
+      <h2 class="section-title">Where I've Worked</h2>
+      <div class="timeline">
+
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <span class="timeline-date">Jul 2022 – May 2024</span>
+            <span class="timeline-location">Bangalore, India</span>
+          </div>
+          <div class="timeline-content">
+            <h3>Airport Operations & Customer Service</h3>
+            <p class="timeline-company">IndiGo Airlines (InterGlobe Aviation Ltd.)</p>
+            <ul>
+              <li>Deployed forecasting models that improved service quality metrics by <strong>25%</strong></li>
+              <li>Streamlined cross-functional workflows, cutting delay-related costs by <strong>2%</strong></li>
+              <li>Built interactive SQL dashboards used directly by senior leadership for operational decisions</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-meta">
+            <span class="timeline-date">Apr 2021 – Jul 2022</span>
+            <span class="timeline-location">Bangalore, India</span>
+          </div>
+          <div class="timeline-content">
+            <h3>Business Development Analyst</h3>
+            <p class="timeline-company">KREATIO Software Pvt Ltd</p>
+            <ul>
+              <li>Led data-driven resource allocation strategies, driving a <strong>30% revenue increase</strong></li>
+              <li>Simplified reporting dashboards, improving cross-team decision-making speed</li>
+              <li>Boosted lead conversion rates by <strong>30%</strong> through pipeline analysis and optimization</li>
+            </ul>
+          </div>
+        </div>
+
+      </div>
     </div>
-</section>
+  </section>
 
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <p class="section-label">Education</p>
+      <h2 class="section-title">Academic Background</h2>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-header">
+            <div>
+              <h3>MS Business Analytics</h3>
+              <p>Simon Business School, University of Rochester</p>
+            </div>
+            <span class="edu-year">2025</span>
+          </div>
+          <p class="edu-note">STEM-certified · Rochester, New York</p>
+          <div class="edu-courses">
+            <span>Advanced Analytics</span>
+            <span>Process Improvement</span>
+            <span>Supply Chain</span>
+            <span>Core Statistics</span>
+            <span>Business Strategy</span>
+          </div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-header">
+            <div>
+              <h3>BBA</h3>
+              <p>University of Kerala</p>
+            </div>
+            <span class="edu-year">2021</span>
+          </div>
+          <p class="edu-note">Trivandrum, India</p>
+        </div>
+      </div>
 
-<!-- Education Section -->
-<section id="education" class="section">
-    <h2>Education</h2>
-    <div class="education-card">
-        <h3>Master of Science in Business Analytics</h3>
-        <p><strong>Simon Business School, University of Rochester</strong> | Rochester, New York</p>
-        <p>Graduation: December 2025 </p>
-        <p>Relevant Coursework: Advanced Business Analytics, Process Improvement, Business Strategy, Core Statistics, Supply Chain</p>
-        <p><strong>This STEM-certified program equips me with the latest tools in analytics and business strategy, aligning perfectly with my professional aspirations.</strong></p> <!-- Relating coursework to career goals -->
+      <p class="section-label" style="margin-top:64px;">Certifications</p>
+      <div class="certs-grid">
+        <div class="cert-item">
+          <p class="cert-name">Google Data Analytics</p>
+          <p class="cert-org">Coursera · 2023</p>
+        </div>
+        <div class="cert-item">
+          <p class="cert-name">Business Analytics for Decision Making</p>
+          <p class="cert-org">University of Colorado Boulder · 2023</p>
+        </div>
+        <div class="cert-item">
+          <p class="cert-name">Professional Skills for International Business</p>
+          <p class="cert-org">University of London · 2021</p>
+        </div>
+        <div class="cert-item">
+          <p class="cert-name">English for Business & Entrepreneurship</p>
+          <p class="cert-org">University of Pennsylvania · 2020</p>
+        </div>
+      </div>
     </div>
-    <div class="education-card">
-        <h3>Bachelor of Business Administration</h3>
-        <p><strong>University of Kerala</strong> | Trivandrum, India</p>
-        <p>Graduation: March 2021</p>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <p class="section-label">Contact</p>
+      <h2 class="contact-headline">Let's work together.</h2>
+      <p class="contact-sub">Open to full-time roles, internships, and collaborative projects in data analytics, business intelligence, and machine learning.</p>
+      <a href="mailto:prahlad.narayan77@gmail.com" class="btn-primary btn-large">Say hello →</a>
+      <div class="contact-links">
+        <a href="mailto:prahlad.narayan77@gmail.com">prahlad.narayan77@gmail.com</a>
+        <span>·</span>
+        <a href="https://www.linkedin.com/in/prahladn/" target="_blank">LinkedIn</a>
+        <span>·</span>
+        <a href="https://github.com/PrahladNarayanBhardwaj" target="_blank">GitHub</a>
+        <span>·</span>
+        <span>Rochester, NY</span>
+      </div>
     </div>
-</section>
+  </section>
 
-
-<!-- Additional Information Section -->
-<section id="activities" class="section">
-    <h2>Professional Activities</h2>
-    <div class="activity-card">
-        <h3>Vice President and MS Representative</h3>
-        <p><strong>Equity, Diversity, and Inclusion Coalition</strong></p>
-        <p>Promoted inclusivity and represented MS students through community engagement and leadership initiatives.</p>
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <p>© 2025 Prahlad Narayan Bhardwaj</p>
+      <div class="footer-links">
+        <a href="https://www.linkedin.com/in/prahladn/" target="_blank">LinkedIn</a>
+        <a href="https://github.com/PrahladNarayanBhardwaj" target="_blank">GitHub</a>
+        <a href="mailto:prahlad.narayan77@gmail.com">Email</a>
+      </div>
     </div>
-    <div class="activity-card">
-        <h3>Volunteer, Development Partners Conclave</h3>
-        <p><strong>Rebuild Kerala (2021)</strong></p>
-        <p>Initiated and led collaborations with international firms, managing guest services and featuring distinguished speakers.</p>
-    </div>
-    <div class="activity-card">
-        <h3>Organizing Committee Member</h3>
-        <p><strong>Nishagandhi Monsoon Ragas (2020)</strong></p>
-        <p>Coordinated a prominent state-wide festival with record attendance of 10,000 participants and 20+ artists.</p>
-    </div>
-</section>
+  </footer>
 
-<section id="additional-info" class="section">
-    <h2>Credentials & Learning</h2>
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 50);
+    });
 
-    <!-- Certification 1 -->
-    <div class="info-card">
-        <h3>Google Data Analytics</h3>
-        <p><strong>Coursera (2023)</strong></p>
-        <p>Built proficiency in data visualization, empowering me to deliver business insights that drive decision-making.</p> <!-- Relevance added -->
-    </div>
+    // Hamburger menu
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+    hamburger.addEventListener('click', () => {
+      mobileMenu.classList.toggle('open');
+      hamburger.classList.toggle('active');
+    });
+    mobileMenu.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburger.classList.remove('active');
+      });
+    });
 
-    <!-- Certification 2 -->
-    <div class="info-card">
-        <h3>Business Analytics for Decision Making</h3>
-        <p><strong>University of Colorado Boulder (2023)</strong></p>
-        <p>Enhanced my ability to leverage data-driven strategies for business decision-making.</p>
-    </div>
-
-    <!-- Certification 3 -->
-    <div class="info-card">
-        <h3>English for Business & Entrepreneurship</h3>
-        <p><strong>University of Pennsylvania (2020)</strong></p>
-        <p>Focused on business communication and entrepreneurial skills to enhance my professional interactions.</p>
-    </div>
-
-    <!-- Certification 4 -->
-    <div class="info-card">
-        <h3>Professional Skills for International Business</h3>
-        <p><strong>University of London (2021)</strong></p>
-        <p>Developed international business strategies, enabling me to effectively manage cross-border operations.</p> <!-- Relevance added -->
-    </div>
-</section>
-
-
-<!-- Contact Section -->
-<section id="contact" class="section">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:pbhardw4@simon.rochester.edu">pbhardw4@simon.rochester.edu</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/prahlad-narayan-bhardwaj" target="_blank">Prahlad Narayan Bhardwaj</a></p>
-    <p>Phone:(848) 262-3770</a></p>
-    <p>Location:Rochester, NY, USA</a></p>
-</section>
-
-<!-- Footer -->
-<footer>
-    <p>© 2025 Prahlad Narayan Bhardwaj</p>
-</footer>
-
+    // Fade-in on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          e.target.classList.add('visible');
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.project-card, .timeline-item, .edu-card, .cert-item').forEach(el => {
+      el.classList.add('fade-in');
+      observer.observe(el);
+    });
+  </script>
 </body>
 </html>
