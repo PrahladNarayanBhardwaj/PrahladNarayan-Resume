@@ -10,7 +10,7 @@
   <header>
     <h1>Prahlad Narayan Bhardwaj</h1>
     <p>Data Analyst | MS in Business Analytics</p>
-    <p>Email: <a href="mailto:prahlad.narayan77@gmail.com">pbhardw4@simon.rochester.edu</a> | Phone: (848) 262-3770</p>
+    <p>Email: <a href="mailto:prahlad.narayan77@gmail.com">prahlad.narayan77@gmail.com</a> | Phone: (848) 262-3770</p>
     
     <p>LinkedIn: <a href="https://linkedin.com/in/prahlad-narayan-bhardwaj" target="_blank">Prahlad Narayan Bhardwaj</a></p>
   </header>
