@@ -99,7 +99,9 @@
       </div>
     </div>
 
-    <div class="scroll-cue">
+    <canvas id="scatter-canvas"></canvas>
+
+    <div class="scroll-cue" id="scroll-cue">
       <span class="mono">scroll</span>
       <div class="scroll-bar"></div>
     </div>
@@ -348,24 +350,29 @@
   </footer>
 
   <script>
-  // Nav scroll
+  /* =============================================
+     NAV
+  ============================================= */
   const nav = document.getElementById('nav');
   window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 
-  // Burger
   const burger = document.getElementById('burger');
   const mob = document.getElementById('nav-mobile');
   burger.addEventListener('click', () => { mob.classList.toggle('open'); burger.classList.toggle('open'); });
   mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mob.classList.remove('open'); burger.classList.remove('open'); }));
 
-  // Reveal on scroll
+  /* =============================================
+     REVEAL ON SCROLL
+  ============================================= */
   const revealEls = document.querySelectorAll('.reveal');
   const revealObs = new IntersectionObserver((entries) => {
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
   }, { threshold: 0.12 });
   revealEls.forEach(el => revealObs.observe(el));
 
-  // Counter animation
+  /* =============================================
+     COUNTER ANIMATION
+  ============================================= */
   function animateCounter(el) {
     const target = parseInt(el.dataset.target);
     const duration = 1600;
@@ -383,7 +390,9 @@
   }, { threshold: 0.5 });
   document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
 
-  // Footer time
+  /* =============================================
+     FOOTER TIME
+  ============================================= */
   function updateTime() {
     const now = new Date();
     const opts = { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'America/New_York' };
@@ -391,6 +400,170 @@
   }
   updateTime();
   setInterval(updateTime, 10000);
+
+  /* =============================================
+     SCATTER / BLOW-AWAY HERO ANIMATION
+  ============================================= */
+  (function () {
+    const hero    = document.getElementById('hero');
+    const canvas  = document.getElementById('scatter-canvas');
+    const ctx     = canvas.getContext('2d');
+
+    /* Elements to scatter — each has a unique direction vector */
+    const scatterTargets = [
+      { sel: '.hero-badge',   tx: -340, ty: -180, rot: -25, scale: 0.3 },
+      { sel: '.hero-title',   tx:  -60, ty: -280, rot:  -9, scale: 0.1 },
+      { sel: '.hero-bio',     tx: -280, ty:  160, rot:  18, scale: 0.2 },
+      { sel: '.hero-actions', tx: -100, ty:  340, rot: -22, scale: 0.2 },
+      { sel: '.hero-socials', tx: -420, ty:  260, rot:  32, scale: 0.3 },
+      { sel: '.photo-wrap',   tx:  420, ty: -220, rot:  28, scale: 0.2 },
+      { sel: '.hero-ticker',  tx:  300, ty:  380, rot: -18, scale: 0.2 },
+      { sel: '#scroll-cue',   tx:    0, ty:  400, rot:   0, scale: 0.1 },
+    ];
+
+    /* Resolve DOM refs once */
+    const items = scatterTargets.map(t => ({
+      ...t,
+      el: hero.querySelector(t.sel)
+    })).filter(t => t.el);
+
+    /* ---- Canvas sizing ---- */
+    function resizeCanvas() {
+      canvas.width  = hero.offsetWidth;
+      canvas.height = hero.offsetHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    /* ---- Particle pool ---- */
+    const COLORS = ['#7CFFD4', '#A78BFA', '#ffffff', '#5eead4', '#c4b5fd'];
+    const particles = [];
+    let particlesAlive = false;
+
+    class Particle {
+      constructor(x, y) {
+        this.x  = x;
+        this.y  = y;
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 5;
+        this.vx = Math.cos(angle) * speed;
+        this.vy = Math.sin(angle) * speed - 2;   // slight upward bias
+        this.r  = 1.5 + Math.random() * 3;
+        this.alpha = 0.9 + Math.random() * 0.1;
+        this.decay = 0.012 + Math.random() * 0.018;
+        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.vy += 0.08;          // gravity
+        this.alpha -= this.decay;
+      }
+      draw() {
+        ctx.save();
+        ctx.globalAlpha = Math.max(0, this.alpha);
+        ctx.fillStyle   = this.color;
+        ctx.shadowColor = this.color;
+        ctx.shadowBlur  = 6;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.restore();
+      }
+    }
+
+    function burst(n) {
+      const cx = canvas.width  * 0.42;   // roughly hero center
+      const cy = canvas.height * 0.48;
+      for (let i = 0; i < n; i++) {
+        const sx = cx + (Math.random() - 0.5) * canvas.width  * 0.7;
+        const sy = cy + (Math.random() - 0.5) * canvas.height * 0.5;
+        particles.push(new Particle(sx, sy));
+      }
+    }
+
+    /* ---- Animation state ---- */
+    let progress  = 0;   // 0 → 1 (current lerped value)
+    let target    = 0;   // raw target from scroll
+    let rafId     = null;
+    let lastBurst = 0;
+
+    function lerp(a, b, t) { return a + (b - a) * t; }
+
+    function applyScatter(p) {
+      items.forEach(item => {
+        const tx  = item.tx  * p;
+        const ty  = item.ty  * p;
+        const rot = item.rot * p;
+        const sc  = lerp(1, item.scale, p);
+        const op  = Math.max(0, 1 - p * 1.3);
+        item.el.style.transform  = `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${sc})`;
+        item.el.style.opacity    = op;
+        item.el.style.pointerEvents = p > 0.1 ? 'none' : '';
+      });
+
+      /* Glow expands and fades */
+      const glow1 = hero.querySelector('.glow-1');
+      const glow2 = hero.querySelector('.glow-2');
+      if (glow1) glow1.style.transform = `scale(${1 + p * 3}) translate(-50%, -50%)`;
+      if (glow2) glow2.style.transform = `scale(${1 + p * 2.5}) translate(50%, -50%)`;
+    }
+
+    function drawCanvas(p) {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (!particlesAlive) return;
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const pt = particles[i];
+        pt.update();
+        pt.draw();
+        if (pt.alpha <= 0) particles.splice(i, 1);
+      }
+      if (particles.length === 0) particlesAlive = false;
+    }
+
+    function tick() {
+      progress += (target - progress) * 0.07;
+      applyScatter(progress);
+      drawCanvas(progress);
+
+      /* Burst particles when scatter just kicks off */
+      if (target > 0.05 && progress > 0.04 && performance.now() - lastBurst > 600) {
+        burst(Math.floor(target * 80));
+        particlesAlive = true;
+        lastBurst = performance.now();
+      }
+
+      if (Math.abs(progress - target) > 0.0008 || particlesAlive) {
+        rafId = requestAnimationFrame(tick);
+      } else {
+        progress = target;
+        applyScatter(progress);
+        rafId = null;
+      }
+    }
+
+    function startLoop() {
+      if (!rafId) rafId = requestAnimationFrame(tick);
+    }
+
+    /* ---- Scroll driver ---- */
+    window.addEventListener('scroll', () => {
+      const heroH = hero.offsetHeight;
+      const raw   = Math.min(Math.max(scrollY / (heroH * 0.6), 0), 1);
+      target = raw;
+      startLoop();
+    }, { passive: true });
+
+    /* ---- Set will-change on scatter elements for GPU compositing ---- */
+    items.forEach(item => {
+      item.el.style.willChange   = 'transform, opacity';
+      item.el.style.transition   = 'none';
+    });
+
+    /* Initial draw */
+    applyScatter(0);
+    drawCanvas(0);
+  })();
   </script>
 </body>
 </html>
