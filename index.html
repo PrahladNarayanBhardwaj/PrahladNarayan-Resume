@@ -3,114 +3,177 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prahlad Narayan Bhardwaj</title>
+  <title>Prahlad Narayan Bhardwaj — Data Analyst</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
   <!-- NAV -->
-  <nav id="navbar">
+  <nav id="nav">
     <div class="nav-inner">
-      <a class="nav-logo" href="#hero">PRB</a>
+      <a href="#hero" class="nav-logo">PRB<span class="logo-dot">.</span></a>
       <ul class="nav-links">
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
-        <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
-      <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-        <span></span><span></span><span></span>
-      </button>
+      <button class="burger" id="burger"><span></span><span></span><span></span></button>
     </div>
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="nav-mobile" id="nav-mobile">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
-      <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
 
   <!-- HERO -->
   <section id="hero">
+    <div class="hero-bg">
+      <div class="grid-overlay"></div>
+      <div class="glow glow-1"></div>
+      <div class="glow glow-2"></div>
+    </div>
+
     <div class="hero-inner">
-      <div class="hero-text">
-        <p class="hero-greeting">Hi, I'm Prahlad 👋</p>
-        <h1 class="hero-headline">
-          Turning <span class="accent">data</span><br />
-          into decisions.
-        </h1>
-        <p class="hero-sub">
-          MS Business Analytics · Simon Business School, University of Rochester<br />
-          Specializing in predictive modeling, NLP, and business intelligence.
-        </p>
-        <div class="hero-ctas">
-          <a href="#projects" class="btn-primary">View Projects</a>
-          <a href="#contact" class="btn-ghost">Get in touch</a>
+      <div class="hero-left">
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Available for opportunities · Rochester, NY
         </div>
-        <div class="hero-social">
-          <a href="https://www.linkedin.com/in/prahladn/" target="_blank" aria-label="LinkedIn">
+        <h1 class="hero-title">
+          Data is my<br/>
+          <span class="title-outline">medium.</span><br/>
+          Insights are<br/>
+          my <span class="title-accent">output.</span>
+        </h1>
+        <p class="hero-bio">
+          MS Business Analytics · Simon Business School<br/>
+          Predictive Modeling · NLP · Business Intelligence
+        </p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View Work</a>
+          <a href="#contact" class="btn-outline">Let's talk →</a>
+        </div>
+        <div class="hero-socials">
+          <a href="https://www.linkedin.com/in/prahladn/" target="_blank">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
           </a>
-          <a href="https://github.com/PrahladNarayanBhardwaj" target="_blank" aria-label="GitHub">
+          <a href="https://github.com/PrahladNarayanBhardwaj" target="_blank">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
           </a>
-          <a href="mailto:prahlad.narayan77@gmail.com" aria-label="Email">
+          <a href="mailto:prahlad.narayan77@gmail.com">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>
           </a>
         </div>
       </div>
-      <div class="hero-photo">
-        <img src="images/Headshot.jpg" alt="Prahlad Narayan Bhardwaj" />
+
+      <div class="hero-right">
+        <div class="photo-wrap">
+          <img src="images/Headshot.jpg" alt="Prahlad Narayan Bhardwaj" />
+          <div class="photo-ring"></div>
+        </div>
+        <div class="hero-ticker">
+          <div class="ticker-track">
+            <span>Python</span><span>·</span>
+            <span>SQL</span><span>·</span>
+            <span>Tableau</span><span>·</span>
+            <span>Machine Learning</span><span>·</span>
+            <span>NLP</span><span>·</span>
+            <span>R</span><span>·</span>
+            <span>Power BI</span><span>·</span>
+            <span>Data Analytics</span><span>·</span>
+            <span>Python</span><span>·</span>
+            <span>SQL</span><span>·</span>
+            <span>Tableau</span><span>·</span>
+            <span>Machine Learning</span><span>·</span>
+            <span>NLP</span><span>·</span>
+            <span>R</span><span>·</span>
+            <span>Power BI</span><span>·</span>
+            <span>Data Analytics</span><span>·</span>
+          </div>
+        </div>
       </div>
     </div>
-    <div class="scroll-hint">
-      <span>scroll</span>
-      <div class="scroll-line"></div>
+
+    <div class="scroll-cue">
+      <span class="mono">scroll</span>
+      <div class="scroll-bar"></div>
     </div>
   </section>
+
+  <!-- MARQUEE STRIP -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span>Predictive Modeling</span><span class="sep">✦</span>
+      <span>K-Fold Cross Validation</span><span class="sep">✦</span>
+      <span>TF-IDF & NLP</span><span class="sep">✦</span>
+      <span>Tableau Dashboards</span><span class="sep">✦</span>
+      <span>Customer Segmentation</span><span class="sep">✦</span>
+      <span>Web Scraping</span><span class="sep">✦</span>
+      <span>Network Analysis</span><span class="sep">✦</span>
+      <span>SQL & MySQL</span><span class="sep">✦</span>
+      <span>scikit-learn</span><span class="sep">✦</span>
+      <span>Business Intelligence</span><span class="sep">✦</span>
+      <span>Predictive Modeling</span><span class="sep">✦</span>
+      <span>K-Fold Cross Validation</span><span class="sep">✦</span>
+      <span>TF-IDF & NLP</span><span class="sep">✦</span>
+      <span>Tableau Dashboards</span><span class="sep">✦</span>
+      <span>Customer Segmentation</span><span class="sep">✦</span>
+      <span>Web Scraping</span><span class="sep">✦</span>
+      <span>Network Analysis</span><span class="sep">✦</span>
+      <span>SQL & MySQL</span><span class="sep">✦</span>
+      <span>scikit-learn</span><span class="sep">✦</span>
+      <span>Business Intelligence</span><span class="sep">✦</span>
+    </div>
+  </div>
 
   <!-- ABOUT -->
   <section id="about">
     <div class="container">
-      <p class="section-label">About</p>
       <div class="about-grid">
-        <div class="about-text">
-          <h2>Building the bridge between <span class="accent">analytics</span> and business impact.</h2>
-          <p>I'm a data analyst with hands-on experience in predictive modeling, NLP, and business intelligence. Before pursuing my MS at the University of Rochester, I spent 3 years in industry — at IndiGo Airlines optimizing airport operations and at KREATIO Software driving business development through data.</p>
-          <p>I believe the best analytics work isn't just technically sound — it tells a story that makes decision-makers act.</p>
+        <div class="about-left reveal">
+          <p class="label">About</p>
+          <h2>Analytics is where <em>numbers</em> meet <em>narrative.</em></h2>
+          <p class="body-text">I'm Prahlad — a data analyst and MS Business Analytics student at Simon Business School, University of Rochester. Before grad school, I spent 3 years in industry turning messy operational data into decisions that moved the needle at IndiGo Airlines and KREATIO Software.</p>
+          <p class="body-text">I believe the best analytics work isn't just technically rigorous — it tells a story that makes people act.</p>
+          <a href="mailto:prahlad.narayan77@gmail.com" class="btn-primary">Get in touch</a>
         </div>
-        <div class="about-skills">
-          <p class="skills-label">Tech Stack</p>
-          <div class="skills-grid">
-            <span class="tag">Python</span>
-            <span class="tag">R</span>
-            <span class="tag">SQL</span>
-            <span class="tag">Tableau</span>
-            <span class="tag">Power BI</span>
-            <span class="tag">scikit-learn</span>
-            <span class="tag">pandas</span>
-            <span class="tag">NLTK</span>
-            <span class="tag">Scrapy</span>
-            <span class="tag">NetworkX</span>
-            <span class="tag">MySQL</span>
-            <span class="tag">PySpark</span>
-            <span class="tag">Matplotlib</span>
-            <span class="tag">Seaborn</span>
+        <div class="about-right reveal">
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span class="stat-num" data-target="3">0</span><span class="stat-unit">yrs</span>
+              <p>Industry Experience</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num" data-target="19785">0</span><span class="stat-unit">+</span>
+              <p>Records Modeled</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num" data-target="30">0</span><span class="stat-unit">%</span>
+              <p>Revenue Increase Led</p>
+            </div>
+            <div class="stat-card">
+              <span class="stat-num" data-target="25">0</span><span class="stat-unit">%</span>
+              <p>Ops Efficiency Gain</p>
+            </div>
           </div>
-          <p class="skills-label" style="margin-top:24px;">Methods</p>
-          <div class="skills-grid">
-            <span class="tag tag-outline">Regression</span>
-            <span class="tag tag-outline">Clustering</span>
-            <span class="tag tag-outline">NLP / TF-IDF</span>
-            <span class="tag tag-outline">K-Fold CV</span>
-            <span class="tag tag-outline">Text Classification</span>
-            <span class="tag tag-outline">Forecasting</span>
-            <span class="tag tag-outline">Network Analysis</span>
-            <span class="tag tag-outline">PCA</span>
+          <div class="skills-wrap">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">R</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Tableau</span>
+            <span class="skill-tag">Power BI</span>
+            <span class="skill-tag">scikit-learn</span>
+            <span class="skill-tag">pandas</span>
+            <span class="skill-tag">NLTK</span>
+            <span class="skill-tag">Scrapy</span>
+            <span class="skill-tag">NetworkX</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">PySpark</span>
           </div>
         </div>
       </div>
@@ -120,63 +183,69 @@
   <!-- PROJECTS -->
   <section id="projects">
     <div class="container">
-      <p class="section-label">Projects</p>
-      <h2 class="section-title">Selected Work</h2>
-      <div class="projects-grid">
+      <div class="section-head reveal">
+        <p class="label">Selected Work</p>
+        <h2>Projects</h2>
+      </div>
+      <div class="projects-list">
 
-        <a class="project-card" href="https://github.com/PrahladNarayanBhardwaj/customer-revenue-analytics-mysql-tableau" target="_blank">
-          <div class="project-top">
-            <div class="project-tags">
-              <span>MySQL</span><span>Tableau</span><span>SQL</span>
+        <a class="project-row reveal" href="https://github.com/PrahladNarayanBhardwaj/customer-revenue-analytics-mysql-tableau" target="_blank">
+          <div class="project-info">
+            <div class="project-num mono">01</div>
+            <div class="project-text">
+              <h3>Customer & Revenue Analytics</h3>
+              <p>End-to-end analytics on 16,000+ customer records from the Sakila DVD rental database. Customer segmentation, genre revenue analysis, and demand forecasting via Tableau.</p>
+              <div class="project-tags-row">
+                <span>MySQL</span><span>Tableau</span><span>SQL</span>
+              </div>
             </div>
-            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            <div class="project-arrow">→</div>
           </div>
-          <h3>Customer & Revenue Analytics</h3>
-          <p>End-to-end analytics on the Sakila DVD rental database — customer segmentation, genre revenue analysis, and demand forecasting via Tableau dashboards.</p>
-          <div class="project-highlight">
-            <span>~15% of customers drive majority of revenue</span>
+          <div class="project-img-wrap">
+            <img src="https://raw.githubusercontent.com/PrahladNarayanBhardwaj/customer-revenue-analytics-mysql-tableau/main/Project%20Dashboard.png" alt="Customer Revenue Analytics Dashboard" loading="lazy" />
+            <div class="img-overlay">
+              <span>View Project ↗</span>
+            </div>
           </div>
         </a>
 
-        <a class="project-card" href="https://github.com/PrahladNarayanBhardwaj/predictive-analytics-r-business-cases" target="_blank">
-          <div class="project-top">
-            <div class="project-tags">
-              <span>Python</span><span>scikit-learn</span><span>K-Fold CV</span>
+        <a class="project-row reveal" href="https://github.com/PrahladNarayanBhardwaj/predictive-analytics-r-business-cases" target="_blank">
+          <div class="project-info">
+            <div class="project-num mono">02</div>
+            <div class="project-text">
+              <h3>Predictive Analytics — Business Cases</h3>
+              <p>Credit card approval modeling across 19,785 records. K-fold cross validation comparing Linear Regression, Ridge, and MARS models. Facebook ad ROI & pharmaceutical detailing analysis.</p>
+              <div class="project-tags-row">
+                <span>Python</span><span>scikit-learn</span><span>K-Fold CV</span>
+              </div>
             </div>
-            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            <div class="project-arrow">→</div>
           </div>
-          <h3>Predictive Analytics — Business Cases</h3>
-          <p>Credit card approval modeling across 19,785 records using Linear Regression, Ridge, and Polynomial models. Facebook ad ROI analysis and pharmaceutical detailing causal inference.</p>
-          <div class="project-highlight">
-            <span>Best RMSE: 0.341 (Poly degree-2, no leakage)</span>
+          <div class="project-img-wrap">
+            <img src="https://raw.githubusercontent.com/PrahladNarayanBhardwaj/predictive-analytics-r-business-cases/main/assets/model_comparison_rmse.png" alt="Model Comparison RMSE" loading="lazy" />
+            <div class="img-overlay">
+              <span>View Project ↗</span>
+            </div>
           </div>
         </a>
 
-        <a class="project-card" href="https://github.com/PrahladNarayanBhardwaj/social-media-text-analytics" target="_blank">
-          <div class="project-top">
-            <div class="project-tags">
-              <span>Python</span><span>NLP</span><span>Scrapy</span><span>NetworkX</span>
+        <a class="project-row reveal" href="https://github.com/PrahladNarayanBhardwaj/social-media-text-analytics" target="_blank">
+          <div class="project-info">
+            <div class="project-num mono">03</div>
+            <div class="project-text">
+              <h3>Social Media Text Analytics</h3>
+              <p>Full NLP pipeline: web scraping with Scrapy → TF-IDF preprocessing → multi-model text classification. Naive Bayes achieves 88.9% accuracy on pet reviews. Social network graph analysis.</p>
+              <div class="project-tags-row">
+                <span>Python</span><span>NLP</span><span>Scrapy</span><span>NetworkX</span>
+              </div>
             </div>
-            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+            <div class="project-arrow">→</div>
           </div>
-          <h3>Social Media Text Analytics</h3>
-          <p>Full NLP pipeline: web scraping → TF-IDF preprocessing → multi-model text classification (Naive Bayes, SVM, SGD, Random Forest). Social network graph analysis with NetworkX.</p>
-          <div class="project-highlight">
-            <span>Naive Bayes: 88.9% accuracy on pet reviews</span>
-          </div>
-        </a>
-
-        <a class="project-card project-card--light" href="#projects">
-          <div class="project-top">
-            <div class="project-tags">
-              <span>Python</span><span>PCA</span><span>K-Means</span>
+          <div class="project-img-wrap">
+            <img src="https://raw.githubusercontent.com/PrahladNarayanBhardwaj/social-media-text-analytics/main/assets/accuracy_per_epoch.png" alt="Model Accuracy per Epoch" loading="lazy" />
+            <div class="img-overlay">
+              <span>View Project ↗</span>
             </div>
-            <svg class="arrow-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
-          </div>
-          <h3>Employee Segmentation Analysis</h3>
-          <p>Analyzed 5,000+ employee records for Nexus Logistics using PCA and K-Means clustering to segment motivations and optimize training programs.</p>
-          <div class="project-highlight">
-            <span>15% increase in training efficiency</span>
           </div>
         </a>
 
@@ -187,118 +256,80 @@
   <!-- EXPERIENCE -->
   <section id="experience">
     <div class="container">
-      <p class="section-label">Experience</p>
-      <h2 class="section-title">Where I've Worked</h2>
-      <div class="timeline">
-
-        <div class="timeline-item">
-          <div class="timeline-meta">
-            <span class="timeline-date">Jul 2022 – May 2024</span>
-            <span class="timeline-location">Bangalore, India</span>
-          </div>
-          <div class="timeline-content">
-            <h3>Airport Operations & Customer Service</h3>
-            <p class="timeline-company">IndiGo Airlines (InterGlobe Aviation Ltd.)</p>
-            <ul>
-              <li>Deployed forecasting models that improved service quality metrics by <strong>25%</strong></li>
-              <li>Streamlined cross-functional workflows, cutting delay-related costs by <strong>2%</strong></li>
-              <li>Built interactive SQL dashboards used directly by senior leadership for operational decisions</li>
-            </ul>
-          </div>
-        </div>
-
-        <div class="timeline-item">
-          <div class="timeline-meta">
-            <span class="timeline-date">Apr 2021 – Jul 2022</span>
-            <span class="timeline-location">Bangalore, India</span>
-          </div>
-          <div class="timeline-content">
-            <h3>Business Development Analyst</h3>
-            <p class="timeline-company">KREATIO Software Pvt Ltd</p>
-            <ul>
-              <li>Led data-driven resource allocation strategies, driving a <strong>30% revenue increase</strong></li>
-              <li>Simplified reporting dashboards, improving cross-team decision-making speed</li>
-              <li>Boosted lead conversion rates by <strong>30%</strong> through pipeline analysis and optimization</li>
-            </ul>
-          </div>
-        </div>
-
+      <div class="section-head reveal">
+        <p class="label">Experience</p>
+        <h2>Where I've worked</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION -->
-  <section id="education">
-    <div class="container">
-      <p class="section-label">Education</p>
-      <h2 class="section-title">Academic Background</h2>
-      <div class="edu-grid">
-        <div class="edu-card">
-          <div class="edu-header">
-            <div>
+      <div class="exp-list">
+        <div class="exp-row reveal">
+          <div class="exp-left">
+            <span class="mono exp-year">2022 – 2024</span>
+          </div>
+          <div class="exp-right">
+            <div class="exp-header">
+              <h3>Airport Operations & Customer Service</h3>
+              <span class="exp-company">IndiGo Airlines</span>
+            </div>
+            <ul>
+              <li>Deployed forecasting models improving service quality by <strong>25%</strong></li>
+              <li>Streamlined cross-functional workflows, cutting delay costs by <strong>2%</strong></li>
+              <li>Built interactive SQL dashboards used directly by senior leadership</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-divider"></div>
+        <div class="exp-row reveal">
+          <div class="exp-left">
+            <span class="mono exp-year">2021 – 2022</span>
+          </div>
+          <div class="exp-right">
+            <div class="exp-header">
+              <h3>Business Development Analyst</h3>
+              <span class="exp-company">KREATIO Software Pvt Ltd</span>
+            </div>
+            <ul>
+              <li>Led data-driven resource allocation driving a <strong>30% revenue increase</strong></li>
+              <li>Boosted lead conversion by <strong>30%</strong> through pipeline analysis</li>
+              <li>Simplified reporting dashboards improving cross-team decision speed</li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-divider"></div>
+        <div class="exp-row reveal">
+          <div class="exp-left">
+            <span class="mono exp-year">2025</span>
+          </div>
+          <div class="exp-right">
+            <div class="exp-header">
               <h3>MS Business Analytics</h3>
-              <p>Simon Business School, University of Rochester</p>
+              <span class="exp-company">Simon Business School, University of Rochester</span>
             </div>
-            <span class="edu-year">2025</span>
+            <ul>
+              <li>STEM-certified program · Rochester, New York</li>
+              <li>Advanced Analytics · Supply Chain · Process Improvement · Business Strategy</li>
+            </ul>
           </div>
-          <p class="edu-note">STEM-certified · Rochester, New York</p>
-          <div class="edu-courses">
-            <span>Advanced Analytics</span>
-            <span>Process Improvement</span>
-            <span>Supply Chain</span>
-            <span>Core Statistics</span>
-            <span>Business Strategy</span>
-          </div>
-        </div>
-        <div class="edu-card">
-          <div class="edu-header">
-            <div>
-              <h3>BBA</h3>
-              <p>University of Kerala</p>
-            </div>
-            <span class="edu-year">2021</span>
-          </div>
-          <p class="edu-note">Trivandrum, India</p>
-        </div>
-      </div>
-
-      <p class="section-label" style="margin-top:64px;">Certifications</p>
-      <div class="certs-grid">
-        <div class="cert-item">
-          <p class="cert-name">Google Data Analytics</p>
-          <p class="cert-org">Coursera · 2023</p>
-        </div>
-        <div class="cert-item">
-          <p class="cert-name">Business Analytics for Decision Making</p>
-          <p class="cert-org">University of Colorado Boulder · 2023</p>
-        </div>
-        <div class="cert-item">
-          <p class="cert-name">Professional Skills for International Business</p>
-          <p class="cert-org">University of London · 2021</p>
-        </div>
-        <div class="cert-item">
-          <p class="cert-name">English for Business & Entrepreneurship</p>
-          <p class="cert-org">University of Pennsylvania · 2020</p>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- CONTACT -->
+  <!-- CTA / CONTACT -->
   <section id="contact">
-    <div class="container">
-      <p class="section-label">Contact</p>
-      <h2 class="contact-headline">Let's work together.</h2>
-      <p class="contact-sub">Open to full-time roles, internships, and collaborative projects in data analytics, business intelligence, and machine learning.</p>
-      <a href="mailto:prahlad.narayan77@gmail.com" class="btn-primary btn-large">Say hello →</a>
-      <div class="contact-links">
+    <div class="contact-inner">
+      <div class="contact-glow"></div>
+      <p class="label reveal">Contact</p>
+      <h2 class="contact-headline reveal">
+        Let's work<br/><span class="title-outline">together.</span>
+      </h2>
+      <p class="contact-sub reveal">Open to full-time roles, internships, and collaborative projects in data analytics, business intelligence, and machine learning.</p>
+      <a href="mailto:prahlad.narayan77@gmail.com" class="btn-primary btn-large reveal">Say hello →</a>
+      <div class="contact-links reveal">
         <a href="mailto:prahlad.narayan77@gmail.com">prahlad.narayan77@gmail.com</a>
         <span>·</span>
         <a href="https://www.linkedin.com/in/prahladn/" target="_blank">LinkedIn</a>
         <span>·</span>
         <a href="https://github.com/PrahladNarayanBhardwaj" target="_blank">GitHub</a>
-        <span>·</span>
-        <span>Rochester, NY</span>
       </div>
     </div>
   </section>
@@ -306,7 +337,8 @@
   <!-- FOOTER -->
   <footer>
     <div class="footer-inner">
-      <p>© 2025 Prahlad Narayan Bhardwaj</p>
+      <span class="mono footer-copy">© 2025 Prahlad Narayan Bhardwaj</span>
+      <span class="mono footer-time" id="footer-time"></span>
       <div class="footer-links">
         <a href="https://www.linkedin.com/in/prahladn/" target="_blank">LinkedIn</a>
         <a href="https://github.com/PrahladNarayanBhardwaj" target="_blank">GitHub</a>
@@ -316,39 +348,49 @@
   </footer>
 
   <script>
-    // Navbar scroll effect
-    const navbar = document.getElementById('navbar');
-    window.addEventListener('scroll', () => {
-      navbar.classList.toggle('scrolled', window.scrollY > 50);
-    });
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60));
 
-    // Hamburger menu
-    const hamburger = document.getElementById('hamburger');
-    const mobileMenu = document.getElementById('mobile-menu');
-    hamburger.addEventListener('click', () => {
-      mobileMenu.classList.toggle('open');
-      hamburger.classList.toggle('active');
-    });
-    mobileMenu.querySelectorAll('a').forEach(a => {
-      a.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        hamburger.classList.remove('active');
-      });
-    });
+  // Burger
+  const burger = document.getElementById('burger');
+  const mob = document.getElementById('nav-mobile');
+  burger.addEventListener('click', () => { mob.classList.toggle('open'); burger.classList.toggle('open'); });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => { mob.classList.remove('open'); burger.classList.remove('open'); }));
 
-    // Fade-in on scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          e.target.classList.add('visible');
-          observer.unobserve(e.target);
-        }
-      });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.project-card, .timeline-item, .edu-card, .cert-item').forEach(el => {
-      el.classList.add('fade-in');
-      observer.observe(el);
-    });
+  // Reveal on scroll
+  const revealEls = document.querySelectorAll('.reveal');
+  const revealObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); revealObs.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => revealObs.observe(el));
+
+  // Counter animation
+  function animateCounter(el) {
+    const target = parseInt(el.dataset.target);
+    const duration = 1600;
+    const step = target / (duration / 16);
+    let current = 0;
+    const tick = () => {
+      current = Math.min(current + step, target);
+      el.textContent = Math.floor(current).toLocaleString();
+      if (current < target) requestAnimationFrame(tick);
+    };
+    tick();
+  }
+  const statObs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { animateCounter(e.target); statObs.unobserve(e.target); } });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.stat-num').forEach(el => statObs.observe(el));
+
+  // Footer time
+  function updateTime() {
+    const now = new Date();
+    const opts = { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'America/New_York' };
+    document.getElementById('footer-time').textContent = now.toLocaleTimeString('en-US', opts) + ' EST';
+  }
+  updateTime();
+  setInterval(updateTime, 10000);
   </script>
 </body>
 </html>
