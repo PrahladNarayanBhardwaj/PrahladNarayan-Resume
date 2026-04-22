@@ -18,6 +18,7 @@
         <li><a href="#about">About</a></li>
         <li><a href="#projects">Projects</a></li>
         <li><a href="#experience">Experience</a></li>
+        <li><a href="#education">Education</a></li>
         <li><a href="#contact">Contact</a></li>
       </ul>
       <button class="burger" id="burger"><span></span><span></span><span></span></button>
@@ -26,6 +27,7 @@
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
       <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
       <a href="#contact">Contact</a>
     </div>
   </nav>
@@ -296,10 +298,21 @@
             </ul>
           </div>
         </div>
-        <div class="exp-divider"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <div class="container">
+      <div class="section-head reveal">
+        <p class="label">Education</p>
+        <h2>Where I've studied</h2>
+      </div>
+      <div class="exp-list">
         <div class="exp-row reveal">
           <div class="exp-left">
-            <span class="mono exp-year">2025</span>
+            <span class="mono exp-year">2024 – 2025</span>
           </div>
           <div class="exp-right">
             <div class="exp-header">
@@ -405,164 +418,129 @@
      SCATTER / BLOW-AWAY HERO ANIMATION
   ============================================= */
   (function () {
-    const hero    = document.getElementById('hero');
-    const canvas  = document.getElementById('scatter-canvas');
-    const ctx     = canvas.getContext('2d');
+    const hero   = document.getElementById('hero');
+    const canvas = document.getElementById('scatter-canvas');
+    const ctx    = canvas.getContext('2d');
+    if (!hero || !canvas) return;
 
-    /* Elements to scatter — each has a unique direction vector */
-    const scatterTargets = [
-      { sel: '.hero-badge',   tx: -340, ty: -180, rot: -25, scale: 0.3 },
-      { sel: '.hero-title',   tx:  -60, ty: -280, rot:  -9, scale: 0.1 },
-      { sel: '.hero-bio',     tx: -280, ty:  160, rot:  18, scale: 0.2 },
-      { sel: '.hero-actions', tx: -100, ty:  340, rot: -22, scale: 0.2 },
-      { sel: '.hero-socials', tx: -420, ty:  260, rot:  32, scale: 0.3 },
-      { sel: '.photo-wrap',   tx:  420, ty: -220, rot:  28, scale: 0.2 },
-      { sel: '.hero-ticker',  tx:  300, ty:  380, rot: -18, scale: 0.2 },
-      { sel: '#scroll-cue',   tx:    0, ty:  400, rot:   0, scale: 0.1 },
+    /* Each hero element: how far it flies when progress = 1 */
+    const TARGETS = [
+      { sel: '.hero-badge',   tx: -320, ty: -160, rot: -24, sc: 0.25 },
+      { sel: '.hero-title',   tx:  -50, ty: -260, rot:  -8, sc: 0.08 },
+      { sel: '.hero-bio',     tx: -260, ty:  150, rot:  16, sc: 0.18 },
+      { sel: '.hero-actions', tx:  -90, ty:  320, rot: -20, sc: 0.18 },
+      { sel: '.hero-socials', tx: -400, ty:  250, rot:  30, sc: 0.25 },
+      { sel: '.photo-wrap',   tx:  400, ty: -200, rot:  26, sc: 0.18 },
+      { sel: '.hero-ticker',  tx:  280, ty:  360, rot: -16, sc: 0.18 },
+      { sel: '#scroll-cue',   tx:    0, ty:  360, rot:   0, sc: 0.10 },
     ];
 
-    /* Resolve DOM refs once */
-    const items = scatterTargets.map(t => ({
-      ...t,
-      el: hero.querySelector(t.sel)
-    })).filter(t => t.el);
+    const items = TARGETS.map(t => ({ ...t, el: hero.querySelector(t.sel) })).filter(t => t.el);
 
-    /* ---- Canvas sizing ---- */
+    /* Prepare elements — no transitions, GPU layer */
+    items.forEach(({ el }) => {
+      el.style.willChange  = 'transform, opacity';
+      el.style.transition  = 'none';
+    });
+
+    /* ── Canvas ─────────────────────────────── */
     function resizeCanvas() {
       canvas.width  = hero.offsetWidth;
       canvas.height = hero.offsetHeight;
     }
     resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('resize', resizeCanvas, { passive: true });
 
-    /* ---- Particle pool ---- */
-    const COLORS = ['#7CFFD4', '#A78BFA', '#ffffff', '#5eead4', '#c4b5fd'];
-    const particles = [];
-    let particlesAlive = false;
+    /* ── Particles ──────────────────────────── */
+    const PALETTE = ['#7CFFD4', '#A78BFA', '#ffffff', '#5eead4', '#c4b5fd'];
+    const pool = [];
+    let poolActive = false;
 
-    class Particle {
-      constructor(x, y) {
-        this.x  = x;
-        this.y  = y;
+    function spawnBurst(count) {
+      const cx = canvas.width  * 0.45;
+      const cy = canvas.height * 0.45;
+      for (let i = 0; i < count; i++) {
         const angle = Math.random() * Math.PI * 2;
-        const speed = 2 + Math.random() * 5;
-        this.vx = Math.cos(angle) * speed;
-        this.vy = Math.sin(angle) * speed - 2;   // slight upward bias
-        this.r  = 1.5 + Math.random() * 3;
-        this.alpha = 0.9 + Math.random() * 0.1;
-        this.decay = 0.012 + Math.random() * 0.018;
-        this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+        const speed = 1.5 + Math.random() * 5;
+        pool.push({
+          x:  cx + (Math.random() - 0.5) * canvas.width  * 0.75,
+          y:  cy + (Math.random() - 0.5) * canvas.height * 0.5,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed - 1.5,
+          r:  1.2 + Math.random() * 2.8,
+          a:  0.85 + Math.random() * 0.15,
+          da: 0.010 + Math.random() * 0.018,
+          col: PALETTE[Math.floor(Math.random() * PALETTE.length)]
+        });
       }
-      update() {
-        this.x += this.vx;
-        this.y += this.vy;
-        this.vy += 0.08;          // gravity
-        this.alpha -= this.decay;
-      }
-      draw() {
-        ctx.save();
-        ctx.globalAlpha = Math.max(0, this.alpha);
-        ctx.fillStyle   = this.color;
-        ctx.shadowColor = this.color;
-        ctx.shadowBlur  = 6;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.restore();
-      }
+      poolActive = true;
     }
 
-    function burst(n) {
-      const cx = canvas.width  * 0.42;   // roughly hero center
-      const cy = canvas.height * 0.48;
-      for (let i = 0; i < n; i++) {
-        const sx = cx + (Math.random() - 0.5) * canvas.width  * 0.7;
-        const sy = cy + (Math.random() - 0.5) * canvas.height * 0.5;
-        particles.push(new Particle(sx, sy));
-      }
-    }
-
-    /* ---- Animation state ---- */
-    let progress  = 0;   // 0 → 1 (current lerped value)
-    let target    = 0;   // raw target from scroll
-    let rafId     = null;
-    let lastBurst = 0;
-
-    function lerp(a, b, t) { return a + (b - a) * t; }
-
-    function applyScatter(p) {
-      items.forEach(item => {
-        const tx  = item.tx  * p;
-        const ty  = item.ty  * p;
-        const rot = item.rot * p;
-        const sc  = lerp(1, item.scale, p);
-        const op  = Math.max(0, 1 - p * 1.3);
-        item.el.style.transform  = `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${sc})`;
-        item.el.style.opacity    = op;
-        item.el.style.pointerEvents = p > 0.1 ? 'none' : '';
-      });
-
-      /* Glow expands and fades */
-      const glow1 = hero.querySelector('.glow-1');
-      const glow2 = hero.querySelector('.glow-2');
-      if (glow1) glow1.style.transform = `scale(${1 + p * 3}) translate(-50%, -50%)`;
-      if (glow2) glow2.style.transform = `scale(${1 + p * 2.5}) translate(50%, -50%)`;
-    }
-
-    function drawCanvas(p) {
+    function tickParticles() {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
-      if (!particlesAlive) return;
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const pt = particles[i];
-        pt.update();
-        pt.draw();
-        if (pt.alpha <= 0) particles.splice(i, 1);
+      if (!poolActive) return;
+      let alive = false;
+      for (let i = pool.length - 1; i >= 0; i--) {
+        const p = pool[i];
+        p.x += p.vx;  p.y += p.vy;  p.vy += 0.09;  p.a -= p.da;
+        if (p.a <= 0) { pool.splice(i, 1); continue; }
+        alive = true;
+        ctx.globalAlpha = p.a;
+        ctx.fillStyle   = p.col;
+        ctx.shadowColor = p.col;
+        ctx.shadowBlur  = 7;
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
       }
-      if (particles.length === 0) particlesAlive = false;
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur  = 0;
+      if (!alive) poolActive = false;
     }
 
-    function tick() {
-      progress += (target - progress) * 0.07;
-      applyScatter(progress);
-      drawCanvas(progress);
+    /* ── Scatter logic ──────────────────────── */
+    let prog   = 0;      // lerped progress 0→1
+    let tgt    = 0;      // target from scroll
+    let rafId  = null;
+    let lastBurst = -999;
 
-      /* Burst particles when scatter just kicks off */
-      if (target > 0.05 && progress > 0.04 && performance.now() - lastBurst > 600) {
-        burst(Math.floor(target * 80));
-        particlesAlive = true;
-        lastBurst = performance.now();
-      }
-
-      if (Math.abs(progress - target) > 0.0008 || particlesAlive) {
-        rafId = requestAnimationFrame(tick);
-      } else {
-        progress = target;
-        applyScatter(progress);
-        rafId = null;
-      }
+    function applyProgress(p) {
+      items.forEach(({ el, tx, ty, rot, sc }) => {
+        el.style.transform = `translate(${tx * p}px,${ty * p}px) rotate(${rot * p}deg) scale(${1 + (sc - 1) * p})`;
+        el.style.opacity   = String(Math.max(0, 1 - p * 1.35));
+        el.style.pointerEvents = p > 0.08 ? 'none' : '';
+      });
     }
 
-    function startLoop() {
-      if (!rafId) rafId = requestAnimationFrame(tick);
+    function loop() {
+      prog += (tgt - prog) * 0.075;
+
+      /* Particle burst when scatter crosses threshold */
+      const now = performance.now();
+      if (tgt > 0.08 && prog > 0.06 && now - lastBurst > 700) {
+        spawnBurst(Math.round(50 + tgt * 60));
+        lastBurst = now;
+      }
+
+      applyProgress(prog);
+      tickParticles();
+
+      const done = Math.abs(prog - tgt) < 0.0005 && !poolActive;
+      if (done) { prog = tgt; applyProgress(prog); rafId = null; }
+      else       rafId = requestAnimationFrame(loop);
     }
 
-    /* ---- Scroll driver ---- */
-    window.addEventListener('scroll', () => {
-      const heroH = hero.offsetHeight;
-      const raw   = Math.min(Math.max(scrollY / (heroH * 0.6), 0), 1);
-      target = raw;
-      startLoop();
+    function kick() { if (!rafId) rafId = requestAnimationFrame(loop); }
+
+    /* ── Scroll driver ──────────────────────── */
+    window.addEventListener('scroll', function () {
+      tgt = Math.min(Math.max(window.scrollY / (hero.offsetHeight * 0.6), 0), 1);
+      kick();
     }, { passive: true });
 
-    /* ---- Set will-change on scatter elements for GPU compositing ---- */
-    items.forEach(item => {
-      item.el.style.willChange   = 'transform, opacity';
-      item.el.style.transition   = 'none';
-    });
-
-    /* Initial draw */
-    applyScatter(0);
-    drawCanvas(0);
+    /* Init — render clean state */
+    applyProgress(0);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
   })();
   </script>
 </body>
